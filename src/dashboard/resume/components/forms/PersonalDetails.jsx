@@ -42,7 +42,8 @@ function PersonalDetails({enabledNext}){
         GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp=>{
             console.log(resp);
             enabledNext(true);
-                
+            setLoading(false);
+            toast("Details Updated");
         },(error)=>{
             setLoading(false);
         })
@@ -77,8 +78,8 @@ function PersonalDetails({enabledNext}){
         <Input name='phone' required onChange={handleInputChange}/>
         <Input name='email' required onChange={handleInputChange}/>
         </div>
-        <div>
-            <Button className='mt-5 flex justify-end' type="submit"
+        <div className='mt-5 flex justify-end'>
+            <Button type="submit"
             disabled={loading}>
                 {loading?<LoaderCircle  className='animate-spin'/>:'Save'}
             </Button>
