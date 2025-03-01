@@ -39,7 +39,7 @@ function PersonalDetails({enabledNext}){
             data:formData
         }
 
-        GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp=>{
+        GlobalApi.UpdateResumeDetail(params?.resumeId,data.data).then(resp=>{
             console.log(resp);
             enabledNext(true);
             setLoading(false);
