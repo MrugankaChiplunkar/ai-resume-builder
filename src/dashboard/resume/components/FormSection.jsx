@@ -35,7 +35,7 @@ function FormSection() {
      :activeFormIndex==3? <Experience />
      :activeFormIndex==4? <Education />
      :activeFormIndex==5? <Skills />
-     :activeFormIndex==6? <Navigate to ={'my-resume/' + resumeId + '/view' } />
+     :activeFormIndex==6? <Navigate to ={'/my-resume/' + resumeId + '/view' } />
      : null}
 
      {/* Summary */}

@@ -77,6 +77,29 @@ button:focus-visible {
 
 /* ... */
 
+@media print{
+  #no-print{
+    display: none;
+  }
+
+  #print-area{
+    display: block;
+  }
+
+  body{
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+@page{
+  size: auto;
+  margin: 0mm;
+}
+
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;

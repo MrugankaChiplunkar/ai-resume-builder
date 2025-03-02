@@ -1,34 +1,43 @@
-import React from 'react'
+import React from 'react';
 
-function EducationPreview({resumeInfo}) {
+function EducationPreview({ resumeInfo }) {
   return (
-    <div className='my-6'>
-        <h2 className='text-center font-bold text-sm mb-2'
+    <div className="my-6">
+      <h2
+        className="text-center font-bold text-sm mb-2"
         style={{
-            color: resumeInfo?.themeColor || 'red'
+          color: resumeInfo?.themeColor || 'red',
         }}
-        >Educational Details</h2>
-        <hr style = {{
-            borderColor: resumeInfo?.themeColor || 'red'
-        }}/>
+      >
+        Educational Details
+      </h2>
+      <hr
+        style={{
+          borderColor: resumeInfo?.themeColor || 'red',
+        }}
+      />
 
-        {resumeInfo?.education.map((education,index)=>(
-            <div key={index} className='my-5'>
-                <h2 className='text-sm font-bold'
-                style={{
-                    color: resumeInfo?.themeColor || 'red'
-                }}>{education?.universityName}</h2>
-                <h2 className='text-xs flex justify-between'>{education?.degree} in {education?.major}
-                <span>{education?.startDate} - {education?.notCompleted?'Present' : education.endDate}</span>
-                </h2>
-                <p className='text-xs my-2'>
-                    {education?.description}
-                </p>
-            </div>
-        ))}
-      
+      {(resumeInfo?.education || []).map((education, index) => (
+        <div key={index} className="my-5">
+          <h2
+            className="text-sm font-bold"
+            style={{
+              color: resumeInfo?.themeColor || 'red',
+            }}
+          >
+            {education?.universityName}
+          </h2>
+          <h2 className="text-xs flex justify-between">
+            {education?.degree} in {education?.major}
+            <span>
+              {education?.startDate} - {education?.notCompleted ? 'Present' : education?.endDate}
+            </span>
+          </h2>
+          <p className="text-xs my-2">{education?.description}</p>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
-export default EducationPreview
+export default EducationPreview;

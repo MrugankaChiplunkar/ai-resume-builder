@@ -1,35 +1,39 @@
-import React from 'react'
+import React from 'react';
 
-function SkillsPreview({resumeInfo}) {
+function SkillsPreview({ resumeInfo }) {
   return (
-    <div className='my-6'>
-        <h2 className='text-center font-bold text-sm mb-2'
+    <div className="my-6">
+      <h2
+        className="text-center font-bold text-sm mb-2"
         style={{
-            color: resumeInfo?.themeColor || 'red'
+          color: resumeInfo?.themeColor || 'red',
         }}
-        >Skills</h2>
-        <hr style = {{
-            borderColor: resumeInfo?.themeColor || 'red'
-        }}/>
-      <div className='grid grid-cols-2 gap-3 my-4'>
-        {resumeInfo?.skills.map((skills,index)=>(
-            <div key = {index} className='flex items-center justify-between'>
-                <h2 className='text-xs'>{skills.name}</h2>
-                <div className='h-2 bg-gray-200 w-[120px]'>
-                    <div className='h-2'
-                    style={{
-                        backgroundColor:resumeInfo?.themeColor || 'red',
-                        width:skills?.rating*20+'%'
-                    }}>
-
-                    </div>
-                </div>
+      >
+        Skills
+      </h2>
+      <hr
+        style={{
+          borderColor: resumeInfo?.themeColor || 'red',
+        }}
+      />
+      <div className="grid grid-cols-2 gap-3 my-4">
+        {(resumeInfo?.skills || []).map((skills, index) => (
+          <div key={index} className="flex items-center justify-between">
+            <h2 className="text-xs">{skills.name}</h2>
+            <div className="h-2 bg-gray-200 w-[120px]">
+              <div
+                className="h-2"
+                style={{
+                  backgroundColor: resumeInfo?.themeColor || 'red',
+                  width: skills?.rating * 20 + '%',
+                }}
+              ></div>
             </div>
+          </div>
         ))}
-        </div>
-
+      </div>
     </div>
-  )
+  );
 }
 
-export default SkillsPreview
+export default SkillsPreview;
