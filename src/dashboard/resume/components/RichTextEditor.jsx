@@ -2,7 +2,11 @@ import { Button } from '@/components/ui/button';
 import { ResumeInfoContext } from '@/context/ResumeInfoContext';
 import { Brain, LoaderCircle } from 'lucide-react';
 import React, { useContext, useState } from 'react';
-import { BtnBold, BtnBulletList, BtnItalic, BtnLink, BtnNumberedList, BtnStrikeThrough, BtnUnderline, Editor, EditorProvider, Separator, Toolbar } from 'react-simple-wysiwyg';
+import { 
+  BtnBold, BtnBulletList, BtnItalic, BtnLink, 
+  BtnNumberedList, BtnStrikeThrough, BtnUnderline, 
+  Editor, EditorProvider, Separator, Toolbar 
+} from 'react-simple-wysiwyg';
 import { AIChatSession } from './../../../../services/AIModel';
 
 const PROMPT = 'Position Title: {positionTitle}, Depending on Position Title give me 4-5 bullet points for my experience in resume, give me result in HTML format';
@@ -48,14 +52,14 @@ function RichTextEditor({ onRichTextEditorChange, index }) {
   };
 
   return (
-    <div>
-      <div className='flex justify-between my-2'>
-        <label>Work Summary</label>
+    <div className="p-6 shadow-xl rounded-xl border border-gray-700 bg-black text-white mt-5">
+      <div className='flex justify-between items-center mb-4'>
+        <label className="font-semibold text-lg">Work Summary</label>
         <Button 
           variant='outline' 
           size='sm' 
           onClick={GenerateSummaryFromAI}
-          className='flex gap-2 border-primary text-primary mb-2'
+          className='flex gap-2 border-gray-500 text-white bg-gray-900 hover:bg-gray-700'
         >
           {loading ? 
             <LoaderCircle className='animate-spin'/> : 
@@ -67,11 +71,16 @@ function RichTextEditor({ onRichTextEditorChange, index }) {
       </div>
       
       <EditorProvider>
-        <Editor key={value} value={value} onChange={(e) => {
-          setValue(e.target.value);
-          onRichTextEditorChange(e.target.value, index); // Ensure parent updates
-        }}>
-          <Toolbar>
+        <Editor 
+          key={value} 
+          value={value} 
+          onChange={(e) => {
+            setValue(e.target.value);
+            onRichTextEditorChange(e.target.value, index); // Ensure parent updates
+          }}
+          className="w-full h-48 p-3 border border-gray-600 bg-gray-900 text-white rounded-lg"
+        >
+          <Toolbar className="bg-gray-800 text-white p-2 rounded-lg shadow-md">
             <BtnBold />
             <BtnItalic />
             <BtnUnderline />
