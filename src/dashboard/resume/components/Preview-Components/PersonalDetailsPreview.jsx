@@ -1,41 +1,60 @@
-import React from 'react'
+import React from 'react';
 
-function PersonalDetailsPreview({resumeInfo}) {
+function PersonalDetailsPreview({ resumeInfo }) {
   return (
-    <div>
-      <h2 className='font-bold text-xl text-center'
-      style = {{
-        color:resumeInfo?.themeColor || 'red'
-      }}
-      >{resumeInfo?.firstName} {resumeInfo?.lastName}</h2>
-      <h2 className='text-center text-sm font-medium'>{resumeInfo?.jobTitle}</h2>
-      <h2 className='text-center font-normal text-xs'
-      style = {{
-        color:resumeInfo?.themeColor || 'red'
-      }}
-      >{resumeInfo?.address}</h2>
+    <div className=" p-5 my-5 shadow-lg rounded-lg border border-gray-700 bg-black text-white">
+      {/* Full Name */}
+      <h2
+        className="font-bold text-2xl uppercase text-center"
+        style={{
+          color: resumeInfo?.themeColor || '#ffffff',
+        }}
+      >
+        {resumeInfo?.firstName} {resumeInfo?.lastName}
+      </h2>
 
-      <div className='flex justify-between'>
-      <h2 className='font-normal text-xs'
-      style = {{
-        color:resumeInfo?.themeColor || 'red'
-      }}
-      >{resumeInfo?.phone}</h2>
-      <h2 className='font-normal text-xs'
-      style = {{
-        color:resumeInfo?.themeColor || 'red'
-      }}
-      >{resumeInfo?.email}</h2>
+      {/* Job Title */}
+      <h2 className="text-gray-300 text-sm font-medium mt-1 text-center">
+        {resumeInfo?.jobTitle}
+      </h2>
+
+      {/* Address */}
+      <h2
+        className="text-xs font-normal mt-1 text-center"
+        style={{
+          color: resumeInfo?.themeColor || '#ffffff',
+        }}
+      >
+        {resumeInfo?.address}
+      </h2>
+
+      {/* Contact Info */}
+      <div className="flex justify-between text-xs font-normal mt-3 border border-gray-600 px-4 py-2 rounded-lg bg-gray-900 shadow-md">
+        <h2
+          style={{
+            color: resumeInfo?.themeColor || '#ffffff',
+          }}
+        >
+          📞 {resumeInfo?.phone}
+        </h2>
+        <h2
+          style={{
+            color: resumeInfo?.themeColor || '#ffffff',
+          }}
+        >
+          ✉️ {resumeInfo?.email}
+        </h2>
       </div>
 
-      <hr className='border-[1.5px] my-2'
-      style={{
-        borderColor:resumeInfo?.themeColor || 'red'
-      }} 
+      {/* Divider */}
+      <hr
+        className="border-[1.5px] my-3"
+        style={{
+          borderColor: resumeInfo?.themeColor || '#ffffff',
+        }}
       />
-
     </div>
-  )
+  );
 }
 
-export default PersonalDetailsPreview
+export default PersonalDetailsPreview;
