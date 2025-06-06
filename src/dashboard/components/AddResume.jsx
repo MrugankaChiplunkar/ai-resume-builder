@@ -1,4 +1,4 @@
-import { Loader2, PlusSquare } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -20,12 +20,13 @@ function AddResume() {
   const [resumeTitle, setResumeTitle] = useState("");
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   const onCreate = async () => {
+    if (!resumeTitle.trim()) return;
     setLoading(true);
-    const uuid = uuidv4();
 
+    const uuid = uuidv4();
     const data = {
       data: {
         title: resumeTitle,
@@ -35,60 +36,66 @@ function AddResume() {
       },
     };
 
-    GlobalApi.CreateNewResume(data)
-      .then((resp) => {
-        if (resp) {
-          setLoading(false);
-          navigation("/dashboard/resume/" + resp.data.data.documentId + "/edit");
-        }
-      })
-      .catch(() => setLoading(false));
+    try {
+      const resp = await GlobalApi.CreateNewResume(data);
+      if (resp) {
+        setLoading(false);
+        navigate(`/dashboard/resume/${resp.data.data.documentId}/edit`);
+      }
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
   };
 
   return (
     <div>
-      {/* Add Resume Card - Color Adjustments */}
+      {/* Add Resume Card */}
       <div
-        className="relative w-[300px] h-[280px] bg-gray-900 text-white rounded-xl shadow-lg p-6 mx-3
-                    flex flex-col items-center justify-center cursor-pointer transform transition-all hover:from-black-1000 hover:to-blue-300 transition-all hover:shadow-2xl"
+        className="relative w-[300px] h-[280px] bg-gradient-to-br from-gray-900 to-gray-800/80 text-white 
+                   rounded-2xl shadow-lg p-6 mx-3 flex flex-col items-center justify-center 
+                   hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer border border-gray-700"
         onClick={() => setOpenDialog(true)}
       >
-        <PlusSquare className="text-6xl text-white" />
-        <p className="mt-2 text-white font-semibold">Add Resume</p>
+        <Plus className="text-6xl mb-2 text-blue-400" />
+        <p className="text-lg font-semibold">Add New Resume</p>
       </div>
 
-      {/* Dialog for Adding Resume */}
-      <Dialog open={openDialog}>
-        <DialogContent className="bg-gray-900 text-white border border-gray-700 rounded-lg">
+      {/* Dialog */}
+      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+        <DialogContent className="bg-gray-900/90 backdrop-blur-lg text-white border border-gray-700 rounded-xl shadow-xl">
           <DialogHeader>
-            <DialogTitle className="text-blue-400">Create New Resume</DialogTitle>
+            <DialogTitle className="text-blue-400 text-xl">Create New Resume</DialogTitle>
             <DialogDescription>
-              <p className="text-gray-300">Add a title for your resume.</p>
+              <p className="text-gray-400 mt-2">Enter a unique and relevant title for your resume.</p>
               <Input
-                className="mt-2 bg-gray-800 text-white border-gray-600"
-                placeholder="Eg. Java Developer Resume"
+                className="mt-4 bg-gray-800 text-white border-gray-600 focus-visible:ring-1 focus-visible:ring-blue-500"
+                placeholder="e.g., Full Stack Developer Resume"
+                value={resumeTitle}
                 onChange={(e) => setResumeTitle(e.target.value)}
               />
             </DialogDescription>
-            <div className="flex justify-end gap-5 mt-4">
-              <Button onClick={() => setOpenDialog(false)} variant="ghost" className="text-gray-400 hover:text-black">
-                Cancel
-              </Button>
-              <Button
-                disabled={!resumeTitle || loading}
-                onClick={onCreate}
-                className="bg-blue-700 from black hover:bg-blue-500 text-white"
-              >
-                {loading ? <Loader2 className="animate-spin" /> : "Create"}
-              </Button>
-            </div>
           </DialogHeader>
+          <div className="flex justify-end gap-3 mt-6">
+            <Button
+              variant="ghost"
+              className="text-gray-400 hover:text-white"
+              onClick={() => setOpenDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              disabled={!resumeTitle || loading}
+              onClick={onCreate}
+              className="bg-blue-600 hover:bg-blue-500 text-white"
+            >
+              {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Create Resume"}
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
   );
 }
-//add resume page
+
 export default AddResume;
-
-
