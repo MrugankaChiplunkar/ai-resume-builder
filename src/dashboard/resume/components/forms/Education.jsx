@@ -262,7 +262,7 @@ function Education() {
                         University/Institution Name
                       </Label>
                       <Input
-                        className="bg-gray-100 border-gray-300 text-white focus:border-blue-500 focus:ring-blue-500"
+                        className="bg-gray-100 border-gray-300 text-black focus:border-blue-500 focus:ring-blue-500"
                         name="universityName"
                         value={item.universityName}
                         onChange={(e) => handleChange(e, index)}
@@ -277,7 +277,7 @@ function Education() {
                           Degree
                         </Label>
                         <Input
-                          className="bg-gray-100 border-gray-300 text-white focus:border-blue-500 focus:ring-blue-500"
+                          className="bg-gray-100 border-gray-300 text-black focus:border-blue-500 focus:ring-blue-500"
                           name="degree"
                           value={item.degree}
                           onChange={(e) => handleChange(e, index)}
@@ -290,7 +290,7 @@ function Education() {
                           Major/Field of Study
                         </Label>
                         <Input
-                          className="bg-gray-100 border-gray-300 text-white focus:border-blue-500 focus:ring-blue-500"
+                          className="bg-gray-100 border-gray-300 text-black focus:border-blue-500 focus:ring-blue-500"
                           name="major"
                           value={item.major}
                           onChange={(e) => handleChange(e, index)}
@@ -334,7 +334,7 @@ function Education() {
                         Description
                       </Label>
                       <Textarea
-                        className="bg-gray-100 border-gray-300 text-white focus:border-blue-500 focus:ring-blue-500 min-h-[100px]"
+                        className="bg-gray-100 border-gray-300 text-black focus:border-blue-500 focus:ring-blue-500 min-h-[100px]"
                         name="description"
                         value={item.description}
                         onChange={(e) => handleChange(e, index)}
